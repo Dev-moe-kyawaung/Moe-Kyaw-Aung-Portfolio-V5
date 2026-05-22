@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moe Kyaw Aung | Android Senior Developer | Portfolio V5</title>
+<meta name="description" content="Moe Kyaw Aung – Senior Android Developer specializing in Kotlin, Jetpack Compose, Firebase, and REST APIs. Full Stack Developer based in Tachileik, Myanmar. 49+ Professional Certifications.">
+<meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, REST API, Full Stack Developer, Myanmar, Moe Kyaw Aung, Clean Architecture, MVVM, Azure DevOps, Portfolio">
+<meta name="author" content="Moe Kyaw Aung">
+<meta property="og:title" content="Moe Kyaw Aung | Android Senior Developer | Portfolio V5">
+<meta property="og:description" content="Senior Android Developer — Kotlin | Jetpack Compose | Firebase | REST APIs | Clean Architecture">
+<meta property="og:image" content="https://0.gravatar.com/avatar/a2dae9a29fbf7c72552047efc744be54a018938aacd9009e7500f93d72eb0f2e?size=400">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ================================================================
+   CSS CUSTOM PROPERTIES
+================================================================ */
+:root {
+  --primary:      #9b8ec4;
+  --secondary:    #7c6daa;
+  --accent:       #c084fc;
+  --accent2:      #818cf8;
+  --bg:           #F5F3FF;
+  --bg-alt:       #ede9fe;
+  --surface:      rgba(255,255,255,0.70);
+  --surface-s:    rgba(255,255,255,0.94);
+  --glass:        rgba(155,142,196,0.10);
+  --glass-mid:    rgba(155,142,196,0.20);
+  --glass-b:      rgba(155,142,196,0.30);
+  --text-h:       #1e1240;
+  --text-b:       #4b3f89;
+  --text-m:       #9387c0;
+  --sw:           260px;
+  --ease:         all 0.3s cubic-bezier(0.4,0,0.2,1);
+  --sh:           0 8px 32px rgba(124,109,170,0.16);
+  --glow:         0 0 28px rgba(155,142,196,0.40);
+}
+[data-theme="dark"] {
+  --primary:      #b5a8d9;
+  --secondary:    #9b8ec4;
+  --accent:       #d8b4fe;
+  --accent2:      #a5b4fc;
+  --bg:           #0d0a1c;
+  --bg-alt:       #140f28;
+  --surface:      rgba(20,15,40,0.78);
+  --surface-s:    rgba(22,16,44,0.96);
+  --glass:        rgba(155,142,196,0.07);
+  --glass-mid:    rgba(155,142,196,0.14);
+  --glass-b:      rgba(155,142,196,0.20);
+  --text-h:       #ece8ff;
+  --text-b:       #c4b5fd;
+  --text-m:       #7c6daa;
+  --sh:           0 8px 36px rgba(0,0,0,0.55);
+  --glow:         0 0 32px rgba(155,142,196,0.25);
+}
+
+/* ================================================================
+   RESET & BASE
+================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:0}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);color:var(--text-b);
+  overflow-x:hidden;
+  transition:background 0.4s ease,color 0.4s ease;
+}
+::selection{background:var(--primary);color:#fff}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+ul{list-style:none}
+input,textarea,button{font-family:inherit}
+
+/* ================================================================
+   PRELOADER
+================================================================ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  transition:opacity 0.7s ease,visibility 0.7s ease;
+}
+#preloader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+.pre-orbit{
+  width:90px;height:90px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.pre-orbit::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:3px solid var(--glass-b);border-top-color:var(--primary);
+  animation:spin 1s linear infinite;
+}
+.pre-orbit::after{
+  content:'';position:absolute;inset:14px;border-radius:50%;
+  border:3px solid var(--glass-b);border-bottom-color:var(--accent);
+  animation:spin 0.6s linear infinite reverse;
+}
+.pre-core{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  box-shadow:0 0 16px rgba(155,142,196,0.6);
+  animation:pulse-c 1.4s ease-in-out infinite;
+}
+.pre-txt{
+  font-family:'Orbitron',monospace;font-size:10px;
+  letter-spacing:5px;color:var(--text-m);text-transform:uppercase;
+  animation:blink 1.6s ease-in-out infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse-c{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:.7}}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ================================================================
+   SIDEBAR
+================================================================ */
+#sidebar{
+  position:fixed;left:0;top:0;
+  width:var(--sw);height:100vh;
+  background:var(--surface-s);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-right:1px solid var(--glass-b);
+  z-index:300;
+  display:flex;flex-direction:column;
+  padding:20px 16px 16px;
+  overflow-y:auto;overflow-x:hidden;
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1),background 0.4s;
+}
+#sidebar::-webkit-scrollbar{width:3px}
+#sidebar::-webkit-scrollbar-thumb{background:var(--glass-b);border-radius:2px}
+
+.sb-logo{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:13px;
+  color:var(--primary);letter-spacing:1.5px;
+  padding-bottom:16px;border-bottom:1px solid var(--glass-b);
+  margin-bottom:14px;flex-shrink:0;line-height:1.4;
+}
+.sb-logo span{color:var(--accent)}
+
+.sb-avatar{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:18px;flex-shrink:0;
+}
+.sb-avatar img{
+  width:64px;height:64px;border-radius:50%;
+  border:2.5px solid var(--primary);
+  box-shadow:var(--glow);object-fit:cover;
+}
+.sb-name{
+  font-family:'Orbitron',monospace;font-size:8px;font-weight:700;
+  letter-spacing:1.5px;color:var(--text-h);margin-top:9px;text-align:center;
+}
+.sb-role{font-size:9px;color:var(--accent);letter-spacing:.8px;text-align:center;margin-top:3px}
+
+.sb-sec-lbl{
+  font-size:7.5px;font-family:'Orbitron',monospace;font-weight:700;
+  letter-spacing:3px;color:var(--text-m);text-transform:uppercase;
+  padding-left:8px;margin:14px 0 6px;flex-shrink:0;
+}
+.nav-link{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 10px;border-radius:10px;
+  font-size:11.5px;font-weight:600;color:var(--text-b);
+  transition:var(--ease);cursor:pointer;margin-bottom:2px;
+  border:1px solid transparent;
+}
+.nav-link i{width:15px;text-align:center;font-size:11px;flex-shrink:0}
+.nav-link:hover,.nav-link.active{
+  background:var(--glass);border-color:var(--glass-b);
+  color:var(--primary);transform:translateX(4px);
+}
+
+.sb-bottom{
+  padding-top:14px;border-top:1px solid var(--glass-b);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;margin-top:auto;
+}
+.sb-ver{font-size:8px;color:var(--text-m);font-family:'Orbitron',monospace;letter-spacing:1px}
+.theme-btn{
+  background:var(--glass);border:1px solid var(--glass-b);
+  border-radius:20px;padding:5px 11px;
+  cursor:pointer;font-size:13px;
+  display:flex;align-items:center;gap:5px;
+  transition:var(--ease);color:var(--text-b);
+}
+.theme-btn:hover{background:var(--glass-mid)}
+
+/* ================================================================
+   HAMBURGER + OVERLAY
+================================================================ */
+#hamburger{
+  display:none;position:fixed;top:13px;left:13px;z-index:400;
+  background:var(--surface-s);backdrop-filter:blur(14px);
+  border:1px solid var(--glass-b);border-radius:10px;
+  padding:9px 12px;cursor:pointer;font-size:15px;color:var(--primary);
+  transition:var(--ease);
+}
+#sb-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.50);backdrop-filter:blur(3px);z-index:299;
+}
+#sb-overlay.open{display:block}
+
+/* ================================================================
+   MAIN CONTENT
+================================================================ */
+#content{margin-left:var(--sw);min-height:100vh}
+
+/* ================================================================
+   GLASS CARD
+================================================================ */
+.gc{
+  background:var(--glass);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--glass-b);border-radius:20px;
+  box-shadow:var(--sh);transition:var(--ease);
+}
+.gc:hover{border-color:var(--primary);box-shadow:var(--glow),var(--sh);transform:translateY(-4px)}
+
+/* ================================================================
+   SECTIONS
+================================================================ */
+section{padding:80px 48px;position:relative;overflow:hidden}
+.sec-alt{background:var(--bg-alt)}
+
+.sec-label{
+  font-family:'Orbitron',monospace;font-size:9.5px;font-weight:700;
+  letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;
+}
+.sec-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(22px,3.5vw,40px);font-weight:900;
+  color:var(--text-h);line-height:1.2;margin-bottom:14px;
+}
+.sec-title span{color:var(--primary)}
+.sec-bar{width:52px;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;margin-bottom:44px}
+.sec-bar.center{margin:0 auto 44px}
+.tc{text-align:center}
+
+/* Background orb decoration */
+.deco-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+
+/* ================================================================
+   SCROLL ANIMATIONS
+================================================================ */
+.fi{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease}
+.fl{opacity:0;transform:translateX(-40px);transition:opacity .75s ease,transform .75s ease}
+.fr{opacity:0;transform:translateX(40px);transition:opacity .75s ease,transform .75s ease}
+.fi.vis,.fl.vis,.fr.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.50s}
+.d7{transition-delay:.60s}.d8{transition-delay:.70s}
+
+/* ================================================================
+   HERO
+================================================================ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:0 52px;position:relative;overflow:hidden;
+}
+#hero-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+.hero-inner{position:relative;z-index:1;max-width:760px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;background:var(--glass);
+  border:1px solid var(--glass-b);border-radius:100px;
+  font-size:10px;font-weight:700;color:var(--accent);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;
+  backdrop-filter:blur(12px);animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(36px,5.5vw,72px);font-weight:900;line-height:1.08;
+  color:var(--text-h);margin-bottom:12px;
+}
+.hero-title .hl{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:clamp(14px,2vw,19px);color:var(--text-b);font-weight:600;margin-bottom:16px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.chip{
+  padding:4px 12px;background:var(--glass);border:1px solid var(--glass-b);
+  border-radius:100px;font-size:10px;font-weight:700;color:var(--primary);
+  backdrop-filter:blur(8px);
+}
+.hero-desc{
+  font-size:13.5px;color:var(--text-b);line-height:1.88;
+  margin-bottom:30px;max-width:580px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Floating card on hero right */
+.hero-card{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  z-index:1;width:260px;padding:24px;
+  background:var(--surface);backdrop-filter:blur(20px);
+  border:1px solid var(--glass-b);border-radius:22px;
+  box-shadow:var(--sh),var(--glow);
+  animation:float2 4s ease-in-out infinite;
+}
+@keyframes float2{0%,100%{transform:translateY(-50%) translateY(0)}50%{transform:translateY(-50%) translateY(-12px)}}
+.hc-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.hc-dot{width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:blink 2s ease-in-out infinite}
+.hc-on{font-family:'Orbitron',monospace;font-size:9px;color:var(--text-h);font-weight:700}
+.hc-img{width:52px;height:52px;border-radius:50%;border:2.5px solid var(--primary);margin:0 auto 10px;object-fit:cover}
+.hc-name{font-family:'Orbitron',monospace;font-size:10px;font-weight:800;color:var(--text-h);text-align:center}
+.hc-role{font-size:9px;color:var(--text-m);text-align:center;margin-top:2px}
+.hc-divider{height:1px;background:var(--glass-b);margin:14px 0}
+.hc-stat{display:flex;justify-content:space-between}
+.hc-sv{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:var(--primary)}
+.hc-sl{font-size:8px;color:var(--text-m);font-weight:700}
+
+/* scroll hint */
+.scroll-hint{
+  position:absolute;bottom:26px;left:calc(var(--sw) + 48px);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.sh-txt{font-size:8px;letter-spacing:4px;color:var(--text-m);font-family:'Orbitron',monospace}
+.sh-mouse{width:18px;height:30px;border:2px solid var(--glass-b);border-radius:9px;display:flex;justify-content:center;padding-top:5px}
+.sh-dot{width:2.5px;height:6px;background:var(--primary);border-radius:2px;animation:sdown 2s ease-in-out infinite}
+@keyframes sdown{0%{transform:translateY(0);opacity:1}100%{transform:translateY(10px);opacity:0}}
+
+/* ================================================================
+   BUTTONS
+================================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:12px;
+  font-weight:700;font-size:13px;cursor:pointer;transition:var(--ease);border:none;
+}
+.btn-p{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;
+  box-shadow:0 4px 18px rgba(124,109,170,.35);
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(124,109,170,.55)}
+.btn-g{
+  background:var(--glass);backdrop-filter:blur(10px);
+  color:var(--primary);border:1px solid var(--glass-b);
+}
+.btn-g:hover{background:var(--glass-mid);transform:translateY(-3px);border-color:var(--primary)}
+
+/* ================================================================
+   STICKY CTA
+================================================================ */
+#sticky-cta{
+  position:fixed;bottom:26px;right:26px;z-index:500;
+  display:flex;flex-direction:column;gap:10px;align-items:flex-end;
+}
+.scta-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 18px;border-radius:50px;
+  font-size:12px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  box-shadow:0 4px 20px rgba(124,109,170,.5);
+  cursor:pointer;transition:var(--ease);border:none;
+  white-space:nowrap;
+}
+.scta-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 28px rgba(124,109,170,.65)}
+#back-top{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--surface-s);border:1px solid var(--glass-b);
+  color:var(--primary);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:15px;transition:var(--ease);
+  box-shadow:var(--sh);opacity:0;visibility:hidden;
+}
+#back-top.show{opacity:1;visibility:visible}
+#back-top:hover{background:var(--primary);color:#fff;transform:translateY(-3px)}
+
+/* ================================================================
+   ABOUT
+================================================================ */
+.about-grid{display:grid;grid-template-columns:340px 1fr;gap:60px;align-items:center}
+.photo-wrap{position:relative;flex-shrink:0}
+.photo-wrap img{
+  width:100%;aspect-ratio:1;border-radius:28px;object-fit:cover;
+  border:3px solid var(--primary);box-shadow:var(--glow);
+}
+.photo-frame{
+  position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;
+  border:2px solid var(--glass-b);border-radius:34px;pointer-events:none;
+}
+.photo-badge{
+  position:absolute;bottom:-12px;right:-12px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff;padding:12px 16px;border-radius:16px;
+  font-family:'Orbitron',monospace;font-size:10px;font-weight:900;
+  text-align:center;line-height:1.5;box-shadow:0 8px 24px rgba(124,109,170,.4);
+}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 24px}
+.info-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-b)}
+.info-row i{color:var(--primary);width:14px;flex-shrink:0}
+.about-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+.atag{
+  padding:5px 13px;background:var(--glass);border:1px solid var(--glass-b);
+  border-radius:100px;font-size:10px;font-weight:700;color:var(--secondary);
+}
+
+/* ================================================================
+   SKILLS
+================================================================ */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.skill-card{padding:20px}
+.sk-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;color:#fff;margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(155,142,196,.3);
+}
+.sk-name{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text-h);margin-bottom:8px}
+.sk-track{height:5px;background:var(--glass-b);border-radius:3px;overflow:hidden;margin-bottom:4px}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:3px;width:0;transition:width 1.8s cubic-bezier(0.4,0,0.2,1)}
+.sk-pct{font-size:9px;color:var(--text-m);text-align:right;font-family:'Orbitron',monospace}
+
+/* ================================================================
+   STATS
+================================================================ */
+#stats{
+  background:linear-gradient(135deg,var(--secondary) 0%,var(--primary) 60%,var(--accent) 100%);
+  position:relative;overflow:hidden;
+}
+.stats-pattern{
+  position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:radial-gradient(circle,#fff 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
+.stat-c{
+  text-align:center;padding:28px 16px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);
+  border-radius:18px;backdrop-filter:blur(10px);transition:var(--ease);
+}
+.stat-c:hover{transform:translateY(-6px);background:rgba(255,255,255,.18)}
+.stat-ico{font-size:20px;color:rgba(255,255,255,.7);margin-bottom:8px}
+.stat-num{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(32px,4.5vw,52px);font-weight:900;color:#fff;line-height:1;
+}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,.82);font-weight:600;margin-top:5px;letter-spacing:.5px}
+
+/* ================================================================
+   PROJECTS
+================================================================ */
+.proj-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
+.proj-c{padding:24px;position:relative;overflow:hidden}
+.proj-c::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+}
+.proj-tag-top{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:100px;
+  background:var(--glass-mid);font-size:8.5px;font-weight:700;
+  color:var(--primary);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px;
+}
+.proj-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:800;color:var(--text-h);margin-bottom:7px}
+.proj-desc{font-size:12px;color:var(--text-b);line-height:1.78;margin-bottom:14px}
+.proj-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.p-chip{
+  padding:2px 8px;border-radius:100px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  font-size:8.5px;font-weight:700;color:var(--secondary);
+}
+.proj-links{display:flex;gap:7px}
+.p-link{
+  padding:6px 12px;border-radius:8px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  font-size:10.5px;font-weight:700;color:var(--primary);
+  transition:var(--ease);display:flex;align-items:center;gap:5px;
+}
+.p-link:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ================================================================
+   CERTIFICATES
+================================================================ */
+.filter-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px}
+.f-btn{
+  padding:5px 14px;border-radius:100px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  font-size:10.5px;font-weight:700;color:var(--text-b);
+  cursor:pointer;transition:var(--ease);
+}
+.f-btn:hover,.f-btn.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.certs-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.cert-c{
+  border-radius:14px;overflow:hidden;
+  border:1px solid var(--glass-b);background:var(--glass);
+  cursor:pointer;transition:var(--ease);
+}
+.cert-c:hover{transform:translateY(-6px);border-color:var(--primary);box-shadow:var(--glow)}
+.cert-img{aspect-ratio:4/3;overflow:hidden;background:var(--bg-alt);position:relative}
+.cert-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.cert-c:hover .cert-img img{transform:scale(1.07)}
+.cert-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(14,9,40,.85));
+  display:flex;align-items:flex-end;padding:10px;opacity:0;transition:opacity .3s ease;
+}
+.cert-c:hover .cert-overlay{opacity:1}
+.cert-view-btn{
+  font-size:9px;font-weight:700;color:#fff;
+  background:var(--primary);padding:3px 10px;border-radius:100px;letter-spacing:1px;
+}
+.cert-inf{padding:10px 12px}
+.cert-cat{font-size:8.5px;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:2px}
+.cert-nm{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;color:var(--text-h);line-height:1.4}
+
+/* ================================================================
+   LIGHTBOX
+================================================================ */
+#lb{
+  display:none;position:fixed;inset:0;
+  background:rgba(4,2,16,.93);backdrop-filter:blur(16px);
+  z-index:2000;align-items:center;justify-content:center;padding:24px;
+}
+#lb.open{display:flex}
+.lb-wrap{position:relative;max-width:88vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:14px}
+#lb-img{max-width:100%;max-height:78vh;border-radius:14px;border:2px solid var(--glass-b);box-shadow:0 24px 80px rgba(0,0,0,.7)}
+#lb-cap{font-family:'Orbitron',monospace;font-size:10px;color:rgba(255,255,255,.7);letter-spacing:2px}
+.lb-close{
+  position:absolute;top:-16px;right:-16px;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--accent);border:none;color:#fff;
+  font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:var(--ease);
+}
+.lb-close:hover{transform:scale(1.12) rotate(90deg)}
+.lb-arr{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#fff;font-size:15px;transition:var(--ease);
+}
+.lb-arr:hover{background:var(--primary)}
+#lb-prev{left:-58px}#lb-next{right:-58px}
+
+/* ================================================================
+   GITHUB SECTION
+================================================================ */
+.gh-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.gh-c{padding:26px;text-align:center}
+.gh-av{
+  width:74px;height:74px;border-radius:50%;
+  border:3px solid var(--primary);margin:0 auto 12px;object-fit:cover;
+  box-shadow:var(--glow);
+}
+.gh-user{font-family:'Orbitron',monospace;font-size:12px;font-weight:800;color:var(--text-h);margin-bottom:7px}
+.gh-bio{font-size:11px;color:var(--text-b);line-height:1.72;margin-bottom:16px}
+.gh-stats{display:flex;justify-content:center;gap:20px;margin-bottom:16px}
+.gh-s-n{font-family:'Orbitron',monospace;font-size:19px;font-weight:900;color:var(--primary)}
+.gh-s-l{font-size:8.5px;color:var(--text-m);font-weight:700}
+.gh-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 18px;border-radius:10px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  font-size:11px;font-weight:700;color:var(--primary);
+  transition:var(--ease);
+}
+.gh-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ================================================================
+   ORGANIZATIONS
+================================================================ */
+.org-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.org-c{padding:26px;text-align:center;align-items:center}
+.org-ico{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin:0 auto 12px;
+}
+.org-nm{font-family:'Orbitron',monospace;font-size:11px;font-weight:800;color:var(--text-h);margin-bottom:7px}
+.org-desc{font-size:11px;color:var(--text-b);line-height:1.72}
+
+/* ================================================================
+   LOVABLE / SOCIAL LINKS
+================================================================ */
+.soc-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.soc-c{
+  display:flex;align-items:center;gap:11px;
+  padding:14px 16px;border-radius:13px;
+  border:1px solid var(--glass-b);background:var(--glass);
+  backdrop-filter:blur(12px);transition:var(--ease);
+}
+.soc-c:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:var(--glow)}
+.soc-ico{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;
+}
+.soc-pl{font-family:'Orbitron',monospace;font-size:8.5px;font-weight:700;color:var(--text-h)}
+.soc-hl{font-size:9.5px;color:var(--text-m);margin-top:1px;word-break:break-all;line-height:1.3}
+
+/* ================================================================
+   TESTIMONIALS
+================================================================ */
+.slider-wrap{position:relative;overflow:hidden;border-radius:20px}
+.slider-track{display:flex;transition:transform .55s cubic-bezier(0.4,0,0.2,1)}
+.slide{min-width:100%}
+.testi-c{padding:40px;max-width:660px;margin:0 auto;text-align:center}
+.stars{color:#f59e0b;letter-spacing:3px;font-size:15px;margin-bottom:14px}
+.testi-q{font-size:14.5px;line-height:1.88;color:var(--text-b);font-style:italic;margin-bottom:20px}
+.testi-auth{display:flex;align-items:center;justify-content:center;gap:11px}
+.testi-auth img{width:46px;height:46px;border-radius:50%;border:2.5px solid var(--primary);object-fit:cover}
+.auth-nm{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--text-h)}
+.auth-role{font-size:10px;color:var(--text-m)}
+.sl-dots{display:flex;justify-content:center;gap:6px;margin-top:20px}
+.sl-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--glass-b);cursor:pointer;transition:var(--ease);
+}
+.sl-dot.on{width:22px;border-radius:4px;background:var(--primary)}
+.sl-arr-wrap{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:100%;display:flex;justify-content:space-between;pointer-events:none;
+  padding:0 10px;
+}
+.sl-arr{
+  pointer-events:all;width:38px;height:38px;border-radius:50%;
+  background:var(--glass-mid);border:1px solid var(--glass-b);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;color:var(--primary);
+  transition:var(--ease);backdrop-filter:blur(8px);
+}
+.sl-arr:hover{background:var(--primary);color:#fff}
+
+/* ================================================================
+   PRICING
+================================================================ */
+.price-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:start}
+.price-c{
+  padding:34px 26px;text-align:center;position:relative;
+  border-radius:22px;border:1px solid var(--glass-b);
+  background:var(--glass);backdrop-filter:blur(16px);transition:var(--ease);
+}
+.price-c:hover{transform:translateY(-8px)}
+.price-c.feat{
+  background:linear-gradient(150deg,var(--secondary),var(--primary),var(--accent2));
+  border-color:transparent;box-shadow:0 20px 60px rgba(124,109,170,.4);
+}
+.price-badge{
+  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;
+  padding:3px 14px;border-radius:100px;
+  font-size:8.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;
+}
+.price-nm{font-family:'Orbitron',monospace;font-size:11px;font-weight:800;letter-spacing:2px;color:var(--text-h);margin-bottom:9px}
+.feat .price-nm{color:#fff}
+.price-amt{font-family:'Orbitron',monospace;font-size:44px;font-weight:900;color:var(--text-h);line-height:1}
+.feat .price-amt{color:#fff}
+.price-amt sup{font-size:20px;vertical-align:super}
+.price-per{font-size:10.5px;color:var(--text-m);margin-bottom:22px}
+.feat .price-per{color:rgba(255,255,255,.75)}
+.price-feats{list-style:none;text-align:left;margin-bottom:26px}
+.price-feat{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 0;font-size:12px;color:var(--text-b);
+  border-bottom:1px solid var(--glass-b);
+}
+.feat .price-feat{color:#fff;border-color:rgba(255,255,255,.18)}
+.price-feat i{color:var(--primary);font-size:11px;flex-shrink:0}
+.feat .price-feat i{color:#fff}
+
+/* ================================================================
+   FAQ
+================================================================ */
+.faq-item{
+  border:1px solid var(--glass-b);border-radius:14px;
+  overflow:hidden;background:var(--glass);margin-bottom:9px;
+}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;cursor:pointer;
+  font-weight:700;font-size:13.5px;color:var(--text-h);transition:var(--ease);
+}
+.faq-q:hover{color:var(--primary)}
+.faq-ico{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--glass-mid);border:1px solid var(--glass-b);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:var(--primary);transition:transform .3s ease;flex-shrink:0;
+}
+.faq-item.open .faq-ico{transform:rotate(45deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-a{max-height:240px;padding:0 20px 16px}
+.faq-a p{font-size:12.5px;color:var(--text-b);line-height:1.85}
+
+/* ================================================================
+   NEWSLETTER
+================================================================ */
+.nl-wrap{max-width:580px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.nl-form{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+.nl-in{
+  flex:1;min-width:200px;padding:12px 16px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  border-radius:11px;font-size:13px;color:var(--text-h);outline:none;
+  transition:var(--ease);backdrop-filter:blur(8px);
+}
+.nl-in::placeholder{color:var(--text-m)}
+.nl-in:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(155,142,196,.2)}
+
+/* ================================================================
+   CONTACT
+================================================================ */
+.contact-g{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.ci-card{display:flex;align-items:center;gap:13px;padding:16px 18px;border-radius:14px}
+.ci-ico{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;
+}
+.ci-lbl{font-family:'Orbitron',monospace;font-size:8.5px;font-weight:700;color:var(--text-m);letter-spacing:1.5px;text-transform:uppercase}
+.ci-val{font-size:12.5px;font-weight:600;color:var(--text-h);margin-top:2px}
+
+/* Contact form */
+.cform{display:flex;flex-direction:column;gap:13px;padding:28px;border-radius:20px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-inp,.cf-ta{
+  padding:12px 16px;border-radius:11px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  font-size:13px;color:var(--text-h);outline:none;
+  transition:var(--ease);width:100%;
+}
+.cf-inp::placeholder,.cf-ta::placeholder{color:var(--text-m)}
+.cf-inp:focus,.cf-ta:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(155,142,196,.18)}
+.cf-ta{resize:vertical;min-height:130px}
+.cf-err{font-size:10px;color:#f87171;margin-top:-8px;display:none}
+.cf-success{
+  display:none;text-align:center;padding:16px;
+  background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);
+  border-radius:12px;font-size:13px;color:#4ade80;font-weight:700;
+}
+
+/* ================================================================
+   GOOGLE MAP
+================================================================ */
+.map-wrap{border-radius:20px;overflow:hidden;border:1px solid var(--glass-b);height:340px}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:saturate(0.7) opacity(0.85)}
+
+/* ================================================================
+   FOOTER
+================================================================ */
+footer{
+  background:var(--bg-alt);
+  border-top:1px solid var(--glass-b);
+  padding:60px 48px 24px;
+}
+.footer-g{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.ft-brand-name{font-family:'Orbitron',monospace;font-size:15px;font-weight:900;color:var(--text-h);margin-bottom:10px}
+.ft-brand-name span{color:var(--primary)}
+.ft-desc{font-size:12px;color:var(--text-b);line-height:1.8;margin-bottom:16px}
+.ft-soc{display:flex;gap:8px}
+.ft-s-ico{
+  width:34px;height:34px;border-radius:9px;
+  background:var(--glass);border:1px solid var(--glass-b);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--primary);transition:var(--ease);
+}
+.ft-s-ico:hover{background:var(--primary);color:#fff;transform:translateY(-3px)}
+.ft-head{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:3px;color:var(--text-m);text-transform:uppercase;margin-bottom:14px}
+.ft-links{display:flex;flex-direction:column;gap:8px}
+.ft-lnk{font-size:12px;color:var(--text-b);transition:var(--ease);display:flex;align-items:center;gap:6px}
+.ft-lnk:hover{color:var(--primary);transform:translateX(4px)}
+.ft-lnk i{font-size:10px}
+.footer-bottom{
+  border-top:1px solid var(--glass-b);padding-top:20px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.ft-copy{font-size:11px;color:var(--text-m)}
+.ft-ver{font-family:'Orbitron',monospace;font-size:9px;color:var(--text-m);letter-spacing:2px}
+
+/* ================================================================
+   AVAILABILITY BADGE
+================================================================ */
+.avail-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 14px;background:rgba(74,222,128,.12);
+  border:1px solid rgba(74,222,128,.3);border-radius:100px;
+  font-size:10px;font-weight:700;color:#4ade80;
+  margin-bottom:18px;
+}
+.avail-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:blink 2s ease-in-out infinite}
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+@media(max-width:1100px){
+  :root{--sw:240px}
+  .hero-card{display:none}
+  .about-grid{grid-template-columns:280px 1fr;gap:40px}
+  .footer-g{grid-template-columns:1fr 1fr;gap:30px}
+  .stats-g{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  section{padding:60px 24px}
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #content{margin-left:0}
+  #hamburger{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .photo-wrap{max-width:280px;margin:0 auto}
+  .contact-g{grid-template-columns:1fr}
+  footer{padding:48px 24px 20px}
+  .footer-g{grid-template-columns:1fr 1fr;gap:28px}
+  .scroll-hint{left:50%}
+  .lb-prev{left:-16px}.lb-next{right:-16px}
+}
+@media(max-width:600px){
+  section{padding:50px 16px}
+  .stats-g{grid-template-columns:1fr 1fr}
+  .footer-g{grid-template-columns:1fr}
+  .cf-row{grid-template-columns:1fr}
+  .hero-title{font-size:clamp(28px,10vw,52px)}
+  .nl-form{flex-direction:column}
+  .price-g{grid-template-columns:1fr}
+  footer{padding:40px 16px 16px}
+  #sticky-cta{bottom:16px;right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     PRELOADER
+================================================================ -->
+<div id="preloader" role="status" aria-label="Loading portfolio">
+  <div class="pre-orbit"><div class="pre-core"></div></div>
+  <div class="pre-txt">Loading Portfolio V5 ···</div>
+</div>
+
+<!-- ================================================================
+     LIGHTBOX
+================================================================ -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+  <div class="lb-wrap">
+    <button class="lb-close" id="lb-close" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
+    <img id="lb-img" src="" alt="Certificate">
+    <div id="lb-cap"></div>
+    <button class="lb-arr" id="lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-arr" id="lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
+
+<!-- ================================================================
+     SIDEBAR
+================================================================ -->
+<button id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+  <i class="fas fa-bars"></i>
+</button>
+<div id="sb-overlay" aria-hidden="true"></div>
+
+<aside id="sidebar" role="navigation" aria-label="Main navigation">
+  <div class="sb-logo">MKA<span>.</span>DEV<br><small style="font-size:7px;letter-spacing:2px;color:var(--text-m);font-weight:400">PORTFOLIO V5</small></div>
+
+  <div class="sb-avatar">
+    <img src="https://0.gravatar.com/avatar/a2dae9a29fbf7c72552047efc744be54a018938aacd9009e7500f93d72eb0f2e?size=200" alt="Moe Kyaw Aung profile photo">
+    <div class="sb-name">MOE KYAW AUNG</div>
+    <div class="sb-role">Android Senior Dev</div>
+  </div>
+
+  <div class="sb-sec-lbl">Navigation</div>
+  <nav>
+    <a class="nav-link active" href="#hero"><i class="fas fa-house"></i> Home</a>
+    <a class="nav-link" href="#about"><i class="fas fa-user"></i> About</a>
+    <a class="nav-link" href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a class="nav-link" href="#stats"><i class="fas fa-chart-bar"></i> Stats</a>
+    <a class="nav-link" href="#projects"><i class="fas fa-rocket"></i> Projects</a>
+    <a class="nav-link" href="#certificates"><i class="fas fa-certificate"></i> Certificates</a>
+    <a class="nav-link" href="#github"><i class="fab fa-github"></i> GitHub</a>
+    <a class="nav-link" href="#organizations"><i class="fas fa-building"></i> Organizations</a>
+    <a class="nav-link" href="#social"><i class="fas fa-share-nodes"></i> Social Links</a>
+    <a class="nav-link" href="#testimonials"><i class="fas fa-quote-left"></i> Testimonials</a>
+    <a class="nav-link" href="#pricing"><i class="fas fa-tag"></i> Pricing</a>
+    <a class="nav-link" href="#faq"><i class="fas fa-circle-question"></i> FAQ</a>
+    <a class="nav-link" href="#newsletter"><i class="fas fa-envelope"></i> Newsletter</a>
+    <a class="nav-link" href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
+  </nav>
+
+  <div class="sb-bottom">
+    <div class="sb-ver">V5.0.0</div>
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+  </div>
+</aside>
+
+<!-- ================================================================
+     STICKY CTA + BACK TO TOP
+================================================================ -->
+<div id="sticky-cta">
+  <button id="back-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <a href="#contact" class="scta-btn"><i class="fas fa-envelope"></i> Hire Me</a>
+</div>
+
+<!-- ================================================================
+     MAIN CONTENT
+================================================================ -->
+<main id="content">
+
+  <!-- =================== HERO =================== -->
+  <section id="hero" aria-label="Hero section">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <!-- Floating orbs -->
+    <div class="deco-orb" style="width:500px;height:500px;background:rgba(155,142,196,.18);top:-100px;right:-60px"></div>
+    <div class="deco-orb" style="width:300px;height:300px;background:rgba(192,132,252,.14);bottom:80px;right:200px"></div>
+    <div class="deco-orb" style="width:200px;height:200px;background:rgba(129,140,248,.14);top:30%;right:46%"></div>
+
+    <div class="hero-inner">
+      <div class="avail-badge fi">
+        <div class="avail-dot"></div>
+        Available for Freelance Work
+      </div>
+      <div class="hero-badge fi d1">
+        <i class="fab fa-android"></i>
+        Android Senior Developer · Tachileik, Myanmar
+      </div>
+      <h1 class="hero-title fi d2">
+        Crafting<br><span class="hl">Next-Gen</span><br>Android Apps
+      </h1>
+      <p class="hero-sub fi d3">Moe Kyaw Aung — Full Stack &amp; Mobile Expert</p>
+      <div class="hero-chips fi d3">
+        <span class="chip"><i class="fab fa-android"></i> Kotlin</span>
+        <span class="chip">Jetpack Compose</span>
+        <span class="chip"><i class="fas fa-fire"></i> Firebase</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">Clean Architecture</span>
+        <span class="chip">Azure DevOps</span>
+      </div>
+      <p class="hero-desc fi d4">
+        Senior Android Engineer with 5+ years delivering production-grade mobile applications with Clean Architecture, MVVM/MVI, Firebase, and modern CI/CD pipelines. 49+ professional certifications across Mobile, Web, AI, Security, and Cloud domains. Based in Tachileik, Myanmar — available for global remote work.
+      </p>
+      <div class="hero-btns fi d5">
+        <a href="#projects" class="btn btn-p"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn btn-g"><i class="fas fa-envelope"></i> Hire Me</a>
+        <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" class="btn btn-g"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+
+    <!-- Floating info card -->
+    <div class="hero-card" aria-hidden="true">
+      <div class="hc-row">
+        <div class="hc-dot"></div>
+        <div class="hc-on">AVAILABLE FOR WORK</div>
+      </div>
+      <img class="hc-img" src="https://0.gravatar.com/avatar/a2dae9a29fbf7c72552047efc744be54a018938aacd9009e7500f93d72eb0f2e?size=120" alt="Moe Kyaw Aung">
+      <div class="hc-name">MOE KYAW AUNG</div>
+      <div class="hc-role">Android Senior Developer</div>
+      <div class="hc-divider"></div>
+      <div class="hc-stat">
+        <div style="text-align:center">
+          <div class="hc-sv">5+</div>
+          <div class="hc-sl">YEARS EXP</div>
+        </div>
+        <div style="text-align:center">
+          <div class="hc-sv">49+</div>
+          <div class="hc-sl">CERTS</div>
+        </div>
+        <div style="text-align:center">
+          <div class="hc-sv">22+</div>
+          <div class="hc-sl">REPOS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="sh-mouse"><div class="sh-dot"></div></div>
+      <div class="sh-txt">Scroll</div>
+    </div>
+  </section>
+
+  <!-- =================== ABOUT =================== -->
+  <section id="about" class="sec-alt" aria-label="About section">
+    <div class="deco-orb" style="width:400px;height:400px;background:rgba(155,142,196,.10);bottom:-80px;left:-80px"></div>
+    <div class="sec-label fi">About Me</div>
+    <h2 class="sec-title fi d1">Who I <span>Am</span></h2>
+    <div class="sec-bar fi d2"></div>
+
+    <div class="about-grid">
+      <div class="photo-wrap fl">
+        <div class="photo-frame"></div>
+        <img src="https://0.gravatar.com/avatar/a2dae9a29fbf7c72552047efc744be54a018938aacd9009e7500f93d72eb0f2e?size=400" alt="Moe Kyaw Aung full profile photo">
+        <div class="photo-badge">
+          <div>🏆 49+</div>
+          <div>Certifications</div>
+        </div>
+      </div>
+
+      <div class="fr">
+        <h3 style="font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--text-h);margin-bottom:10px">
+          Senior Android Developer<br>&amp; Full Stack Engineer
+        </h3>
+        <p style="font-size:13.5px;color:var(--text-b);line-height:1.9;margin-bottom:14px">
+          I am an Android Developer with nearly <strong>5+ years of experience</strong> building high-performance Android applications using Kotlin, Jetpack Compose, and Clean Architecture. I hold professional certification courses covering programming, computer vision, cyber security, web technologies, AI, and digital growth strategies.
+        </p>
+        <p style="font-size:13.5px;color:var(--text-b);line-height:1.9;margin-bottom:18px">
+          Based in <strong>Tachileik, Myanmar</strong>, I specialize in designing and delivering scalable production-grade mobile solutions. I am passionate about clean code, offline-first architectures, and mentoring junior developers. Currently seeking global remote opportunities to contribute to Microsoft-scale products.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-row"><i class="fas fa-map-marker-alt"></i> Tachileik, Myanmar</div>
+          <div class="info-row"><i class="fas fa-briefcase"></i> Android Developer, Microsoft</div>
+          <div class="info-row"><i class="fas fa-envelope"></i> moekyawaung@fastmail.com</div>
+          <div class="info-row"><i class="fas fa-phone"></i> +959 666 000 050</div>
+          <div class="info-row"><i class="fab fa-linkedin"></i> LinkedIn Profile</div>
+          <div class="info-row"><i class="fas fa-globe"></i> GMT+07:00 (Myanmar Time)</div>
+        </div>
+
+        <div class="about-tags">
+          <span class="atag">🎓 B.Sc. Computer Science</span>
+          <span class="atag">🎓 B.A. English</span>
+          <span class="atag">💼 Clean Architecture</span>
+          <span class="atag">🔥 Firebase Expert</span>
+          <span class="atag">☁️ Azure DevOps</span>
+          <span class="atag">🤖 AI &amp; ML</span>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://gravatar.com/moekyawaung2026" target="_blank" rel="noopener" class="btn btn-p"><i class="fas fa-user-circle"></i> Gravatar Profile</a>
+          <a href="https://www.linkedin.com/in/moe-kyaw-aung-2653093a1" target="_blank" rel="noopener" class="btn btn-g"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SKILLS =================== -->
+  <section id="skills" aria-label="Skills section">
+    <div class="deco-orb" style="width:350px;height:350px;background:rgba(192,132,252,.10);top:-60px;right:-60px"></div>
+    <div class="tc fi"><div class="sec-label">Technical Skills</div></div>
+    <h2 class="sec-title tc fi d1">My <span>Expertise</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="skills-grid">
+      <!-- Skill cards -->
+      <div class="skill-card gc fi d1">
+        <div class="sk-icon"><i class="fab fa-android"></i></div>
+        <div class="sk-name">Kotlin / Android SDK</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="95"></div></div>
+        <div class="sk-pct">95%</div>
+      </div>
+      <div class="skill-card gc fi d2">
+        <div class="sk-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="sk-name">Jetpack Compose</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="92"></div></div>
+        <div class="sk-pct">92%</div>
+      </div>
+      <div class="skill-card gc fi d3">
+        <div class="sk-icon"><i class="fas fa-fire"></i></div>
+        <div class="sk-name">Firebase Suite</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="90"></div></div>
+        <div class="sk-pct">90%</div>
+      </div>
+      <div class="skill-card gc fi d4">
+        <div class="sk-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="sk-name">REST APIs / Retrofit</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="88"></div></div>
+        <div class="sk-pct">88%</div>
+      </div>
+      <div class="skill-card gc fi d1">
+        <div class="sk-icon"><i class="fas fa-diagram-project"></i></div>
+        <div class="sk-name">Clean Architecture / MVVM</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="93"></div></div>
+        <div class="sk-pct">93%</div>
+      </div>
+      <div class="skill-card gc fi d2">
+        <div class="sk-icon"><i class="fas fa-infinity"></i></div>
+        <div class="sk-name">CI/CD · GitHub Actions</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="85"></div></div>
+        <div class="sk-pct">85%</div>
+      </div>
+      <div class="skill-card gc fi d3">
+        <div class="sk-icon"><i class="fab fa-python"></i></div>
+        <div class="sk-name">Python / Computer Vision</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="80"></div></div>
+        <div class="sk-pct">80%</div>
+      </div>
+      <div class="skill-card gc fi d4">
+        <div class="sk-icon"><i class="fab fa-react"></i></div>
+        <div class="sk-name">React / React Native</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="78"></div></div>
+        <div class="sk-pct">78%</div>
+      </div>
+      <div class="skill-card gc fi d1">
+        <div class="sk-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="sk-name">Cyber Security / Ethical Hacking</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="75"></div></div>
+        <div class="sk-pct">75%</div>
+      </div>
+      <div class="skill-card gc fi d2">
+        <div class="sk-icon"><i class="fab fa-microsoft"></i></div>
+        <div class="sk-name">Azure DevOps / MSAL</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="82"></div></div>
+        <div class="sk-pct">82%</div>
+      </div>
+      <div class="skill-card gc fi d3">
+        <div class="sk-icon"><i class="fas fa-brain"></i></div>
+        <div class="sk-name">AI / Machine Learning</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="72"></div></div>
+        <div class="sk-pct">72%</div>
+      </div>
+      <div class="skill-card gc fi d4">
+        <div class="sk-icon"><i class="fas fa-database"></i></div>
+        <div class="sk-name">Room / DataStore / SQL</div>
+        <div class="sk-track"><div class="sk-fill" data-pct="88"></div></div>
+        <div class="sk-pct">88%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== STATS =================== -->
+  <section id="stats" aria-label="Statistics section">
+    <div class="stats-pattern"></div>
+    <div class="tc fi" style="position:relative;z-index:1;margin-bottom:40px">
+      <div class="sec-label" style="color:rgba(255,255,255,.7)">By The Numbers</div>
+      <h2 class="sec-title fi d1" style="color:#fff">Career <span style="color:rgba(255,255,255,.75)">Highlights</span></h2>
+    </div>
+    <div class="stats-g">
+      <div class="stat-c fi d1">
+        <div class="stat-ico"><i class="fas fa-calendar-check"></i></div>
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-lbl">Years of Experience</div>
+      </div>
+      <div class="stat-c fi d2">
+        <div class="stat-ico"><i class="fas fa-certificate"></i></div>
+        <div class="stat-num" data-target="49">0</div>
+        <div class="stat-lbl">Certifications Earned</div>
+      </div>
+      <div class="stat-c fi d3">
+        <div class="stat-ico"><i class="fab fa-github"></i></div>
+        <div class="stat-num" data-target="22">0</div>
+        <div class="stat-lbl">GitHub Repositories</div>
+      </div>
+      <div class="stat-c fi d4">
+        <div class="stat-ico"><i class="fas fa-share-nodes"></i></div>
+        <div class="stat-num" data-target="12">0</div>
+        <div class="stat-lbl">Verified Social Accounts</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== PROJECTS =================== -->
+  <section id="projects" class="sec-alt" aria-label="Projects section">
+    <div class="deco-orb" style="width:380px;height:380px;background:rgba(129,140,248,.10);bottom:-60px;right:-60px"></div>
+    <div class="tc fi"><div class="sec-label">Portfolio</div></div>
+    <h2 class="sec-title tc fi d1">Featured <span>Projects</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="proj-g">
+      <div class="proj-c gc fi d1">
+        <div class="proj-tag-top"><i class="fas fa-star"></i> Featured</div>
+        <div class="proj-title">PulseSync – Real-time Sync Platform</div>
+        <div class="proj-desc">Advanced multi-module Android application demonstrating senior-level Clean Architecture, Firebase backend, offline-first design, and a full CI/CD pipeline with GitHub Actions and Azure DevOps.</div>
+        <div class="proj-chips">
+          <span class="p-chip">Kotlin</span><span class="p-chip">Jetpack Compose</span>
+          <span class="p-chip">Firebase</span><span class="p-chip">MVVM</span>
+          <span class="p-chip">GitHub Actions</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/pulsesync-android" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+          <a href="#" class="p-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+        </div>
+      </div>
+
+      <div class="proj-c gc fi d2">
+        <div class="proj-tag-top"><i class="fab fa-microsoft"></i> Azure</div>
+        <div class="proj-title">PulseSync Azure Edition</div>
+        <div class="proj-desc">Senior Android app demonstrating production Clean Architecture, Microsoft Azure integration (MSAL, Graph API, OpenAI, Cosmos DB, SignalR), multi-module design, and full Azure DevOps pipeline.</div>
+        <div class="proj-chips">
+          <span class="p-chip">Kotlin</span><span class="p-chip">Azure</span>
+          <span class="p-chip">MSAL</span><span class="p-chip">SignalR</span>
+          <span class="p-chip">Cosmos DB</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/pulsesync-azure" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-c gc fi d3">
+        <div class="proj-tag-top"><i class="fas fa-globe"></i> Web</div>
+        <div class="proj-title">Developer Portfolio Website</div>
+        <div class="proj-desc">Personal portfolio website showcasing Android projects, certifications, and technical expertise. Built with modern HTML, CSS, and JavaScript with responsive glasspunk design.</div>
+        <div class="proj-chips">
+          <span class="p-chip">HTML5</span><span class="p-chip">CSS3</span>
+          <span class="p-chip">JavaScript</span><span class="p-chip">Responsive</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/Dev-moe-kyawaung.github.io" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://dev-moe-kyawaung.github.io" target="_blank" rel="noopener" class="p-link"><i class="fas fa-external-link-alt"></i> Live</a>
+        </div>
+      </div>
+
+      <div class="proj-c gc fi d4">
+        <div class="proj-tag-top"><i class="fas fa-road"></i> Learning</div>
+        <div class="proj-title">Android Senior Dev Roadmaps</div>
+        <div class="proj-desc">Comprehensive Android Senior Developer roadmaps and sample project demonstrating architecture patterns, best practices, and production-ready code structures for aspiring senior devs.</div>
+        <div class="proj-chips">
+          <span class="p-chip">Kotlin</span><span class="p-chip">Roadmap</span>
+          <span class="p-chip">Architecture</span><span class="p-chip">Best Practices</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/Android-Senior-Developer-Roadmaps-and-App-project" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-c gc fi d5">
+        <div class="proj-tag-top"><i class="fas fa-file-code"></i> Utility</div>
+        <div class="proj-title">GitIgnore.io (Fork)</div>
+        <div class="proj-desc">Maintained fork of the popular gitignore.io tool for generating useful .gitignore files for development projects. Swift-based with comprehensive language support.</div>
+        <div class="proj-chips">
+          <span class="p-chip">Swift</span><span class="p-chip">Git</span>
+          <span class="p-chip">DevOps</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/gitignore.io" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-c gc fi d6">
+        <div class="proj-tag-top"><i class="fas fa-server"></i> MCP</div>
+        <div class="proj-title">GitHub MCP Server (Fork)</div>
+        <div class="proj-desc">Maintained fork of GitHub's official MCP Server written in Go. Provides Model Context Protocol integration for AI-assisted development workflows and GitHub API access.</div>
+        <div class="proj-chips">
+          <span class="p-chip">Go</span><span class="p-chip">MCP</span>
+          <span class="p-chip">AI</span><span class="p-chip">GitHub API</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Dev-moe-kyawaung/github-mcp-server" target="_blank" rel="noopener" class="p-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CERTIFICATES =================== -->
+  <section id="certificates" aria-label="Certificates section">
+    <div class="deco-orb" style="width:320px;height:320px;background:rgba(155,142,196,.10);top:-40px;left:-60px"></div>
+    <div class="tc fi"><div class="sec-label">Achievements</div></div>
+    <h2 class="sec-title tc fi d1">Professional <span>Certificates</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="filter-row fi d3" id="cert-filters">
+      <button class="f-btn on" data-cat="all">All (49+)</button>
+      <button class="f-btn" data-cat="mobile">Mobile Dev</button>
+      <button class="f-btn" data-cat="web">Web Dev</button>
+      <button class="f-btn" data-cat="security">Security</button>
+      <button class="f-btn" data-cat="cloud">Cloud &amp; AI</button>
+      <button class="f-btn" data-cat="other">Other</button>
+    </div>
+
+    <div class="certs-g" id="certs-grid"></div>
+  </section>
+
+  <!-- =================== GITHUB =================== -->
+  <section id="github" class="sec-alt" aria-label="GitHub section">
+    <div class="tc fi"><div class="sec-label">Open Source</div></div>
+    <h2 class="sec-title tc fi d1">GitHub <span>Accounts</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="gh-g">
+      <div class="gh-c gc fi d1">
+        <img class="gh-av" src="https://avatars.githubusercontent.com/u/277224745?v=4" alt="Dev-moe-kyawaung GitHub avatar">
+        <div class="gh-user">Dev-moe-kyawaung</div>
+        <div class="gh-bio">Main development account. Senior Android Engineer showcasing production-grade Clean Architecture, Azure integration, and full CI/CD pipeline projects. Joined April 2026.</div>
+        <div class="gh-stats">
+          <div><div class="gh-s-n">22</div><div class="gh-s-l">REPOS</div></div>
+          <div><div class="gh-s-n">3</div><div class="gh-s-l">STARS</div></div>
+          <div><div class="gh-s-n">1</div><div class="gh-s-l">BADGE</div></div>
+        </div>
+        <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" class="gh-btn"><i class="fab fa-github"></i> View Profile</a>
+      </div>
+
+      <div class="gh-c gc fi d2">
+        <img class="gh-av" src="https://0.gravatar.com/avatar/a2dae9a29fbf7c72552047efc744be54a018938aacd9009e7500f93d72eb0f2e?size=200" alt="Moekyawaung GitHub avatar">
+        <div class="gh-user">Moekyawaung</div>
+        <div class="gh-bio">Personal GitHub account linked to Gravatar profile. Contains personal projects, learning repositories, and open source contributions across multiple technology stacks.</div>
+        <div class="gh-stats">
+          <div><div class="gh-s-n">—</div><div class="gh-s-l">REPOS</div></div>
+          <div><div class="gh-s-n">—</div><div class="gh-s-l">STARS</div></div>
+          <div><div class="gh-s-n">12</div><div class="gh-s-l">VERIFIED</div></div>
+        </div>
+        <a href="https://github.com/Moekyawaung" target="_blank" rel="noopener" class="gh-btn"><i class="fab fa-github"></i> View Profile</a>
+      </div>
+
+      <!-- Featured Repos -->
+      <div class="gc fi d3" style="padding:26px;grid-column:1/-1">
+        <h3 style="font-family:'Orbitron',monospace;font-size:13px;font-weight:800;color:var(--text-h);margin-bottom:18px">
+          <i class="fas fa-star" style="color:var(--accent)"></i> Pinned Repositories
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px">
+          <a href="https://github.com/Dev-moe-kyawaung/pulsesync-android" target="_blank" rel="noopener" style="padding:14px;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;transition:var(--ease);display:block" class="repo-c">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <i class="fab fa-android" style="color:var(--primary)"></i>
+              <span style="font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text-h)">pulsesync-android</span>
+            </div>
+            <p style="font-size:11px;color:var(--text-b);line-height:1.65">Senior-level multi-module Android app with Firebase backend &amp; CI/CD pipeline.</p>
+            <div style="display:flex;gap:10px;margin-top:10px;font-size:10px;color:var(--text-m)">
+              <span><i class="fas fa-circle" style="color:#f59e0b;font-size:8px"></i> Kotlin</span>
+              <span>⭐ 1</span>
+            </div>
+          </a>
+          <a href="https://github.com/Dev-moe-kyawaung/pulsesync-azure" target="_blank" rel="noopener" style="padding:14px;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;transition:var(--ease);display:block" class="repo-c">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <i class="fab fa-microsoft" style="color:var(--primary)"></i>
+              <span style="font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text-h)">pulsesync-azure</span>
+            </div>
+            <p style="font-size:11px;color:var(--text-b);line-height:1.65">Azure integration: MSAL, Graph, OpenAI, Cosmos DB, SignalR. 87%+ Jacoco coverage.</p>
+            <div style="display:flex;gap:10px;margin-top:10px;font-size:10px;color:var(--text-m)">
+              <span><i class="fas fa-circle" style="color:#f59e0b;font-size:8px"></i> Kotlin</span>
+            </div>
+          </a>
+          <a href="https://github.com/Dev-moe-kyawaung/Dev-moe-kyawaung.github.io" target="_blank" rel="noopener" style="padding:14px;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;transition:var(--ease);display:block" class="repo-c">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <i class="fas fa-globe" style="color:var(--primary)"></i>
+              <span style="font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text-h)">Portfolio Website</span>
+            </div>
+            <p style="font-size:11px;color:var(--text-b);line-height:1.65">Personal portfolio site. HTML-based responsive website with modern design.</p>
+            <div style="display:flex;gap:10px;margin-top:10px;font-size:10px;color:var(--text-m)">
+              <span><i class="fas fa-circle" style="color:#e44d26;font-size:8px"></i> HTML</span>
+              <span>⭐ 1</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== ORGANIZATIONS =================== -->
+  <section id="organizations" aria-label="Organizations section">
+    <div class="deco-orb" style="width:300px;height:300px;background:rgba(192,132,252,.10);top:-40px;right:-50px"></div>
+    <div class="tc fi"><div class="sec-label">Affiliations</div></div>
+    <h2 class="sec-title tc fi d1">Organizations &amp; <span>Associations</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="org-g">
+      <div class="org-c gc fi d1">
+        <div class="org-ico" style="background:linear-gradient(135deg,#00bcf2,#0078d4)"><i class="fab fa-microsoft" style="color:#fff"></i></div>
+        <div class="org-nm">Microsoft</div>
+        <div class="org-desc">Android Developer affiliated with Microsoft stack. Working with Azure DevOps, MSAL authentication, Microsoft Graph API, and Azure cloud services.</div>
+      </div>
+      <div class="org-c gc fi d2">
+        <div class="org-ico" style="background:linear-gradient(135deg,#4285f4,#34a853)"><i class="fab fa-google" style="color:#fff"></i></div>
+        <div class="org-nm">Google Developers Launchpad</div>
+        <div class="org-desc">Multiple certifications issued in partnership with Google Developers Launchpad, covering Android, Firebase, Kotlin, and modern mobile development.</div>
+      </div>
+      <div class="org-c gc fi d3">
+        <div class="org-ico" style="background:linear-gradient(135deg,#9b59b6,#6c3483)"><i class="fas fa-graduation-cap" style="color:#fff"></i></div>
+        <div class="org-nm">Programming Hub</div>
+        <div class="org-desc">Primary certification partner. Completed 49+ professional certification courses covering all major programming languages, security, and cloud technologies.</div>
+      </div>
+      <div class="org-c gc fi d4">
+        <div class="org-ico" style="background:linear-gradient(135deg,#e74c3c,#c0392b)"><i class="fas fa-university" style="color:#fff"></i></div>
+        <div class="org-nm">University of Computer Studies</div>
+        <div class="org-desc">Bachelor of Computer Science from University of Computer Studies, Pathein, Myanmar. Strong foundation in algorithms, data structures, and software engineering.</div>
+      </div>
+      <div class="org-c gc fi d5">
+        <div class="org-ico" style="background:linear-gradient(135deg,#27ae60,#2ecc71)"><i class="fas fa-code-branch" style="color:#fff"></i></div>
+        <div class="org-nm">E-4Skills Myanmar</div>
+        <div class="org-desc">Member of E-4Skills Myanmar organization focused on digital skills development, technology education, and empowering young developers across Myanmar.</div>
+      </div>
+      <div class="org-c gc fi d6">
+        <div class="org-ico" style="background:linear-gradient(135deg,var(--primary),var(--accent))"><i class="fab fa-github" style="color:#fff"></i></div>
+        <div class="org-nm">Open Source Community</div>
+        <div class="org-desc">Active open source contributor maintaining forks of GitHub MCP Server, gitignore.io, and publishing original tools for the global developer community.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SOCIAL / LOVABLE LINKS =================== -->
+  <section id="social" class="sec-alt" aria-label="Social links section">
+    <div class="tc fi"><div class="sec-label">Connect</div></div>
+    <h2 class="sec-title tc fi d1">Social &amp; <span>Web Presence</span></h2>
+    <div class="sec-bar center fi d2"></div>
+    <p class="fi d3 tc" style="font-size:13px;color:var(--text-b);max-width:560px;margin:0 auto 32px">Find me across the web. All accounts verified through Gravatar's secure verification system.</p>
+
+    <div class="soc-g">
+      <a href="https://github.com/Moekyawaung" target="_blank" rel="noopener" class="soc-c fi d1">
+        <div class="soc-ico" style="background:#24292e"><i class="fab fa-github"></i></div>
+        <div><div class="soc-pl">GitHub</div><div class="soc-hl">@Moekyawaung</div></div>
+      </a>
+      <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" class="soc-c fi d2">
+        <div class="soc-ico" style="background:#24292e"><i class="fab fa-github"></i></div>
+        <div><div class="soc-pl">GitHub (Dev)</div><div class="soc-hl">@Dev-moe-kyawaung</div></div>
+      </a>
+      <a href="https://www.linkedin.com/in/moe-kyaw-aung-2653093a1" target="_blank" rel="noopener" class="soc-c fi d3">
+        <div class="soc-ico" style="background:#0a66c2"><i class="fab fa-linkedin-in"></i></div>
+        <div><div class="soc-pl">LinkedIn</div><div class="soc-hl">moe-kyaw-aung</div></div>
+      </a>
+      <a href="https://gravatar.com/moekyawaung2026" target="_blank" rel="noopener" class="soc-c fi d4">
+        <div class="soc-ico" style="background:linear-gradient(135deg,#1e73be,#21759b)"><i class="fab fa-wordpress"></i></div>
+        <div><div class="soc-pl">Gravatar Profile</div><div class="soc-hl">moekyawaung2026</div></div>
+      </a>
+      <a href="https://valiantblaze20aa517f1a-xvtkh.wordpress.com" target="_blank" rel="noopener" class="soc-c fi d1">
+        <div class="soc-ico" style="background:#21759b"><i class="fab fa-wordpress"></i></div>
+        <div><div class="soc-pl">WordPress Blog</div><div class="soc-hl">valiantblaze</div></div>
+      </a>
+      <a href="https://bsky.app/profile/moekyawaung96.bsky.social" target="_blank" rel="noopener" class="soc-c fi d2">
+        <div class="soc-ico" style="background:#0085ff"><i class="fas fa-cloud"></i></div>
+        <div><div class="soc-pl">Bluesky</div><div class="soc-hl">moekyawaung96</div></div>
+      </a>
+      <a href="https://tiktok.com/@moelay262411" target="_blank" rel="noopener" class="soc-c fi d3">
+        <div class="soc-ico" style="background:#010101"><i class="fab fa-tiktok"></i></div>
+        <div><div class="soc-pl">TikTok</div><div class="soc-hl">@moelay262411</div></div>
+      </a>
+      <a href="https://www.youtube.com/channel/UCdGC3lLlIPnb2VIL_qS65OQ" target="_blank" rel="noopener" class="soc-c fi d4">
+        <div class="soc-ico" style="background:#ff0000"><i class="fab fa-youtube"></i></div>
+        <div><div class="soc-pl">YouTube</div><div class="soc-hl">MKA Channel</div></div>
+      </a>
+      <a href="https://www.reddit.com/user/Mobile-Chemistry4675" target="_blank" rel="noopener" class="soc-c fi d1">
+        <div class="soc-ico" style="background:#ff4500"><i class="fab fa-reddit-alien"></i></div>
+        <div><div class="soc-pl">Reddit</div><div class="soc-hl">Mobile-Chemistry4675</div></div>
+      </a>
+      <a href="https://www.pinterest.com/moekyawaung13721" target="_blank" rel="noopener" class="soc-c fi d2">
+        <div class="soc-ico" style="background:#e60023"><i class="fab fa-pinterest-p"></i></div>
+        <div><div class="soc-pl">Pinterest</div><div class="soc-hl">moekyawaung13721</div></div>
+      </a>
+      <a href="https://www.tumblr.com/moekyawaung" target="_blank" rel="noopener" class="soc-c fi d3">
+        <div class="soc-ico" style="background:#35465c"><i class="fab fa-tumblr"></i></div>
+        <div><div class="soc-pl">Tumblr</div><div class="soc-hl">moekyawaung</div></div>
+      </a>
+      <a href="https://www.flickr.com/people/204037451@N06" target="_blank" rel="noopener" class="soc-c fi d4">
+        <div class="soc-ico" style="background:#ff0084"><i class="fab fa-flickr"></i></div>
+        <div><div class="soc-pl">Flickr</div><div class="soc-hl">204037451@N06</div></div>
+      </a>
+      <a href="https://twitch.tv/moekyawaung137" target="_blank" rel="noopener" class="soc-c fi d1">
+        <div class="soc-ico" style="background:#9146ff"><i class="fab fa-twitch"></i></div>
+        <div><div class="soc-pl">Twitch</div><div class="soc-hl">moekyawaung137</div></div>
+      </a>
+      <a href="https://vimeo.com/user252414232" target="_blank" rel="noopener" class="soc-c fi d2">
+        <div class="soc-ico" style="background:#1ab7ea"><i class="fab fa-vimeo-v"></i></div>
+        <div><div class="soc-pl">Vimeo</div><div class="soc-hl">user252414232</div></div>
+      </a>
+      <a href="mailto:moekyawaung@fastmail.com" class="soc-c fi d3">
+        <div class="soc-ico" style="background:linear-gradient(135deg,var(--primary),var(--accent))"><i class="fas fa-envelope"></i></div>
+        <div><div class="soc-pl">Fastmail</div><div class="soc-hl">moekyawaung@fastmail.com</div></div>
+      </a>
+      <a href="tel:+959666000050" class="soc-c fi d4">
+        <div class="soc-ico" style="background:#4ade80"><i class="fas fa-phone"></i></div>
+        <div><div class="soc-pl">Phone</div><div class="soc-hl">+959 666 000 050</div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- =================== TESTIMONIALS =================== -->
+  <section id="testimonials" aria-label="Testimonials section">
+    <div class="tc fi"><div class="sec-label">Social Proof</div></div>
+    <h2 class="sec-title tc fi d1">What Clients <span>Say</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="slider-wrap gc fi d3">
+      <div class="slider-track" id="slider-track">
+        <div class="slide">
+          <div class="testi-c">
+            <div class="stars">★★★★★</div>
+            <p class="testi-q">"Moe delivered our Android app ahead of schedule with exceptional quality. His expertise in Kotlin and Clean Architecture made the codebase maintainable and scalable. The Firebase integration worked flawlessly from day one. Highly recommend for any serious Android project."</p>
+            <div class="testi-auth">
+              <img src="https://picsum.photos/seed/client1/48/48" alt="Sarah Chen">
+              <div><div class="auth-nm">Sarah Chen</div><div class="auth-role">CTO, TechVenture Singapore</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="testi-c">
+            <div class="stars">★★★★★</div>
+            <p class="testi-q">"Working with Moe was a fantastic experience. He redesigned our legacy Android app with Jetpack Compose and reduced our crash rate by 70%. His knowledge of CI/CD pipelines with GitHub Actions saved our team hours each week. A true senior-level engineer."</p>
+            <div class="testi-auth">
+              <img src="https://picsum.photos/seed/client2/48/48" alt="James Morrison">
+              <div><div class="auth-nm">James Morrison</div><div class="auth-role">Lead Developer, AppCraft UK</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="testi-c">
+            <div class="stars">★★★★★</div>
+            <p class="testi-q">"Moe's offline-first architecture using Room and DataStore transformed our app's user experience. Users now enjoy seamless sync even in low-connectivity areas of Myanmar. His understanding of local market needs combined with global tech standards is rare and invaluable."</p>
+            <div class="testi-auth">
+              <img src="https://picsum.photos/seed/client3/48/48" alt="Htun Kyaw">
+              <div><div class="auth-nm">Htun Kyaw</div><div class="auth-role">Founder, YGN Tech Startup</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="testi-c">
+            <div class="stars">★★★★★</div>
+            <p class="testi-q">"The Azure DevOps pipeline Moe set up for our team cut our release cycles from two weeks to two days. His Azure MSAL integration and real-time SignalR features worked perfectly at enterprise scale. An engineer who truly understands the Microsoft ecosystem end-to-end."</p>
+            <div class="testi-auth">
+              <img src="https://picsum.photos/seed/client4/48/48" alt="David Park">
+              <div><div class="auth-nm">David Park</div><div class="auth-role">Engineering Manager, Seoul Digital</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sl-arr-wrap">
+        <button class="sl-arr" id="sl-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+        <button class="sl-arr" id="sl-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="sl-dots" id="sl-dots"></div>
+  </section>
+
+  <!-- =================== PRICING =================== -->
+  <section id="pricing" class="sec-alt" aria-label="Pricing section">
+    <div class="tc fi"><div class="sec-label">Services</div></div>
+    <h2 class="sec-title tc fi d1">Freelance <span>Pricing</span></h2>
+    <div class="sec-bar center fi d2"></div>
+    <p class="fi d3 tc" style="font-size:13px;color:var(--text-b);max-width:520px;margin:0 auto 40px">Transparent pricing for professional Android and Full Stack development services. All packages include clean, documented, production-ready code.</p>
+
+    <div class="price-g">
+      <div class="price-c fi d1">
+        <div class="price-nm">Starter</div>
+        <div class="price-amt"><sup>$</sup>800</div>
+        <div class="price-per">/ project</div>
+        <ul class="price-feats">
+          <li class="price-feat"><i class="fas fa-check"></i> Single-screen Android app</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Kotlin + Jetpack Compose</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Basic Firebase setup</li>
+          <li class="price-feat"><i class="fas fa-check"></i> 1 revision round</li>
+          <li class="price-feat"><i class="fas fa-check"></i> 14-day delivery</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Source code included</li>
+        </ul>
+        <a href="#contact" class="btn btn-g" style="width:100%;justify-content:center">Get Started</a>
+      </div>
+
+      <div class="price-c feat fi d2">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-nm">Professional</div>
+        <div class="price-amt"><sup>$</sup>2,500</div>
+        <div class="price-per">/ project</div>
+        <ul class="price-feats">
+          <li class="price-feat"><i class="fas fa-check"></i> Full Android application</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Clean Architecture + MVVM</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Firebase complete suite</li>
+          <li class="price-feat"><i class="fas fa-check"></i> REST API integration</li>
+          <li class="price-feat"><i class="fas fa-check"></i> CI/CD pipeline setup</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Play Store deployment</li>
+          <li class="price-feat"><i class="fas fa-check"></i> 3 revision rounds</li>
+          <li class="price-feat"><i class="fas fa-check"></i> 30-day delivery</li>
+        </ul>
+        <a href="#contact" class="btn btn-p" style="width:100%;justify-content:center;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3)">Hire Now</a>
+      </div>
+
+      <div class="price-c fi d3">
+        <div class="price-nm">Enterprise</div>
+        <div class="price-amt">Custom</div>
+        <div class="price-per">/ negotiable</div>
+        <ul class="price-feats">
+          <li class="price-feat"><i class="fas fa-check"></i> Multi-module architecture</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Azure DevOps + MSAL</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Full test coverage (87%+)</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Performance optimization</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Team mentorship</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Ongoing maintenance</li>
+          <li class="price-feat"><i class="fas fa-check"></i> Dedicated support</li>
+        </ul>
+        <a href="#contact" class="btn btn-g" style="width:100%;justify-content:center">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FAQ =================== -->
+  <section id="faq" aria-label="FAQ section">
+    <div class="deco-orb" style="width:280px;height:280px;background:rgba(155,142,196,.10);bottom:-40px;left:-40px"></div>
+    <div class="tc fi"><div class="sec-label">FAQ</div></div>
+    <h2 class="sec-title tc fi d1">Frequently <span>Asked Questions</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div style="max-width:780px;margin:0 auto">
+      <div class="faq-item fi d1">
+        <div class="faq-q">What technologies do you specialize in for Android development?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>I specialize in Kotlin, Jetpack Compose, Android Architecture Components (ViewModel, LiveData, Navigation), Room, DataStore, Hilt/Dagger for DI, Firebase (Auth, Firestore, Cloud Messaging, Crashlytics, Analytics), Retrofit for REST APIs, and Coroutines/Flow for async programming.</p></div>
+      </div>
+      <div class="faq-item fi d2">
+        <div class="faq-q">Do you offer remote freelance services internationally?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>Yes! I work fully remote with clients worldwide. I communicate in both English and Myanmar, and I'm comfortable with time zones across Asia, Europe, and the Americas. I use GitHub, Jira, Slack, and Azure DevOps for project collaboration.</p></div>
+      </div>
+      <div class="faq-item fi d3">
+        <div class="faq-q">What is your development process and timeline?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>I follow an Agile/Scrum methodology with 1–2 week sprints. After an initial discovery call, I provide a detailed technical specification and timeline. I set up a CI/CD pipeline from day one and provide regular build previews. Final delivery includes full documentation, source code, and deployment support.</p></div>
+      </div>
+      <div class="faq-item fi d4">
+        <div class="faq-q">Can you work with existing codebases or only greenfield projects?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>Both! I'm experienced in legacy code migration — modernizing Java/XML Android apps to Kotlin/Jetpack Compose, introducing Clean Architecture to existing projects, setting up testing (JUnit, Espresso, MockK), and establishing CI/CD for mature codebases. I'll assess the existing code and provide an honest improvement roadmap.</p></div>
+      </div>
+      <div class="faq-item fi d5">
+        <div class="faq-q">What certifications do you hold and how relevant are they?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>I hold 49+ professional certifications from Programming Hub (in partnership with Google Developers Launchpad) and other providers. These cover Android, Kotlin, Firebase, React, Python, AI/ML, Cyber Security, AWS, Azure, DevOps, Git, and many more. While certifications complement practical experience, my portfolio of production apps is the best demonstration of my skills.</p></div>
+      </div>
+      <div class="faq-item fi d6">
+        <div class="faq-q">Do you provide post-launch support and maintenance?<div class="faq-ico"><i class="fas fa-plus"></i></div></div>
+        <div class="faq-a"><p>Yes. Enterprise packages include ongoing maintenance. For other packages, I offer a 30-day post-launch support period for bug fixes. Long-term maintenance retainer agreements are available for clients who need continuous improvements, dependency updates, and feature additions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== NEWSLETTER =================== -->
+  <section id="newsletter" class="sec-alt" aria-label="Newsletter section">
+    <div class="deco-orb" style="width:400px;height:400px;background:rgba(155,142,196,.12);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+    <div class="nl-wrap fi">
+      <div class="sec-label tc">Stay Updated</div>
+      <h2 class="sec-title tc fi d1">Subscribe to My <span>Newsletter</span></h2>
+      <div class="sec-bar center fi d2"></div>
+      <p style="font-size:13px;color:var(--text-b);line-height:1.8" class="fi d3">
+        Get monthly updates on Android development trends, open source projects, new certifications, tech articles, and career insights from Tachileik, Myanmar to the global dev community.
+      </p>
+      <form class="nl-form fi d4" id="nl-form" novalidate>
+        <input class="nl-in" type="text" placeholder="Your name" id="nl-name" aria-label="Your name" required>
+        <input class="nl-in" type="email" placeholder="Your email address" id="nl-email" aria-label="Email address" required>
+        <button type="submit" class="btn btn-p" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <p id="nl-success" style="display:none;color:#4ade80;font-size:13px;font-weight:700;margin-top:14px;text-align:center">
+        <i class="fas fa-check-circle"></i> Successfully subscribed! Thank you for joining.
+      </p>
+      <p style="font-size:10px;color:var(--text-m);margin-top:12px" class="fi d5">No spam, ever. Unsubscribe anytime. Your data is safe with me.</p>
+    </div>
+  </section>
+
+  <!-- =================== CONTACT =================== -->
+  <section id="contact" aria-label="Contact section">
+    <div class="deco-orb" style="width:350px;height:350px;background:rgba(192,132,252,.09);top:-60px;right:-40px"></div>
+    <div class="tc fi"><div class="sec-label">Get In Touch</div></div>
+    <h2 class="sec-title tc fi d1">Let's <span>Work Together</span></h2>
+    <div class="sec-bar center fi d2"></div>
+
+    <div class="contact-g">
+      <div class="contact-info fl">
+        <div class="ci-card gc">
+          <div class="ci-ico"><i class="fas fa-envelope"></i></div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val">moekyawaung@fastmail.com</div></div>
+        </div>
+        <div class="ci-card gc">
+          <div class="ci-ico"><i class="fas fa-phone"></i></div>
+          <div><div class="ci-lbl">Phone / WhatsApp</div><div class="ci-val">+959 666 000 050</div></div>
+        </div>
+        <div class="ci-card gc">
+          <div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="ci-lbl">Location</div><div class="ci-val">Tachileik, Myanmar (GMT+07:00)</div></div>
+        </div>
+        <div class="ci-card gc">
+          <div class="ci-ico"><i class="fab fa-linkedin"></i></div>
+          <div>
+            <div class="ci-lbl">LinkedIn</div>
+            <div class="ci-val"><a href="https://www.linkedin.com/in/moe-kyaw-aung-2653093a1" target="_blank" rel="noopener" style="color:var(--primary)">moe-kyaw-aung</a></div>
+          </div>
+        </div>
+        <div class="ci-card gc">
+          <div class="ci-ico"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="ci-lbl">GitHub</div>
+            <div class="ci-val"><a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" style="color:var(--primary)">Dev-moe-kyawaung</a></div>
+          </div>
+        </div>
+
+        <!-- Google Map Embed -->
+        <div class="map-wrap fi d4">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15006.05!2d99.8870!3d20.4439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30d6dd0ccae0e64f%3A0x9c1fcddfc11aba89!2sTachileik%2C%20Myanmar!5e0!3m2!1sen!2sus!4v1699000000000"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Tachileik, Myanmar map location"
+            aria-label="Google Maps showing Tachileik, Myanmar"></iframe>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <form class="cform gc fr" id="contact-form" novalidate aria-label="Contact form">
+        <h3 style="font-family:'Orbitron',monospace;font-size:14px;font-weight:800;color:var(--text-h);margin-bottom:4px">Send a Message</h3>
+        <p style="font-size:12px;color:var(--text-b);margin-bottom:8px">I usually reply within 24 hours.</p>
+
+        <div class="cf-row">
+          <div>
+            <input class="cf-inp" type="text" placeholder="Your name *" id="cf-name" aria-label="Your name" aria-required="true">
+            <div class="cf-err" id="err-name">Please enter your name.</div>
+          </div>
+          <div>
+            <input class="cf-inp" type="email" placeholder="Email address *" id="cf-email" aria-label="Email address" aria-required="true">
+            <div class="cf-err" id="err-email">Please enter a valid email.</div>
+          </div>
+        </div>
+
+        <div>
+          <input class="cf-inp" type="text" placeholder="Subject *" id="cf-subject" aria-label="Subject" aria-required="true">
+          <div class="cf-err" id="err-subject">Please enter a subject.</div>
+        </div>
+
+        <div>
+          <select class="cf-inp" id="cf-service" aria-label="Service type">
+            <option value="">Service type (optional)</option>
+            <option>Android App Development</option>
+            <option>Full Stack Development</option>
+            <option>CI/CD Pipeline Setup</option>
+            <option>Code Review / Consulting</option>
+            <option>Azure / Firebase Integration</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <textarea class="cf-ta" placeholder="Your message *" id="cf-msg" aria-label="Message" aria-required="true"></textarea>
+          <div class="cf-err" id="err-msg">Please enter your message.</div>
+        </div>
+
+        <div class="cf-success" id="cf-success">
+          <i class="fas fa-check-circle" style="font-size:20px;display:block;margin-bottom:8px"></i>
+          Message sent! I'll get back to you within 24 hours. Thank you! 🙏
+        </div>
+
+        <button type="submit" class="btn btn-p" style="width:100%;justify-content:center" aria-label="Send message">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer aria-label="Site footer">
+    <div class="footer-g">
+      <div>
+        <div class="ft-brand-name">MKA<span>.</span>DEV</div>
+        <p class="ft-desc">Senior Android Developer & Full Stack Engineer based in Tachileik, Myanmar. Crafting production-grade mobile applications with Kotlin, Jetpack Compose, Firebase, and Azure DevOps. Available for global remote work.</p>
+        <div class="ft-soc">
+          <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" class="ft-s-ico" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/moe-kyaw-aung-2653093a1" target="_blank" rel="noopener" class="ft-s-ico" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/channel/UCdGC3lLlIPnb2VIL_qS65OQ" target="_blank" rel="noopener" class="ft-s-ico" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com/@moelay262411" target="_blank" rel="noopener" class="ft-s-ico" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://bsky.app/profile/moekyawaung96.bsky.social" target="_blank" rel="noopener" class="ft-s-ico" aria-label="Bluesky"><i class="fas fa-cloud"></i></a>
+          <a href="mailto:moekyawaung@fastmail.com" class="ft-s-ico" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-head">Navigation</div>
+        <div class="ft-links">
+          <a href="#hero" class="ft-lnk"><i class="fas fa-chevron-right"></i>Home</a>
+          <a href="#about" class="ft-lnk"><i class="fas fa-chevron-right"></i>About</a>
+          <a href="#skills" class="ft-lnk"><i class="fas fa-chevron-right"></i>Skills</a>
+          <a href="#projects" class="ft-lnk"><i class="fas fa-chevron-right"></i>Projects</a>
+          <a href="#certificates" class="ft-lnk"><i class="fas fa-chevron-right"></i>Certificates</a>
+          <a href="#contact" class="ft-lnk"><i class="fas fa-chevron-right"></i>Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-head">Services</div>
+        <div class="ft-links">
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>Android Development</a>
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>Full Stack</a>
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>CI/CD Pipelines</a>
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>Firebase Integration</a>
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>Azure DevOps</a>
+          <a href="#pricing" class="ft-lnk"><i class="fas fa-chevron-right"></i>Code Review</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-head">Contact</div>
+        <div class="ft-links">
+          <a href="mailto:moekyawaung@fastmail.com" class="ft-lnk"><i class="fas fa-envelope"></i>moekyawaung@fastmail.com</a>
+          <a href="tel:+959666000050" class="ft-lnk"><i class="fas fa-phone"></i>+959 666 000 050</a>
+          <a href="https://gravatar.com/moekyawaung2026" target="_blank" rel="noopener" class="ft-lnk"><i class="fas fa-user-circle"></i>Gravatar Profile</a>
+          <a href="https://github.com/Dev-moe-kyawaung" target="_blank" rel="noopener" class="ft-lnk"><i class="fab fa-github"></i>GitHub</a>
+          <span class="ft-lnk" style="cursor:default"><i class="fas fa-map-marker-alt"></i>Tachileik, Myanmar</span>
+          <span class="ft-lnk" style="cursor:default"><i class="fas fa-clock"></i>GMT+07:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="ft-copy">© 2026 Moe Kyaw Aung. Built with ❤️ from Tachileik, Myanmar.</div>
+      <div class="ft-ver">PORTFOLIO V5.0.0</div>
+    </div>
+  </footer>
+</main>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+/* ================================================================
+   CERTIFICATE DATA
+================================================================ */
+const CERTS = [
+  {nm:'Kotlin for Android',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739833075958.jpg'},
+  {nm:'Android Development',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1655668351341.jpg'},
+  {nm:'Jetpack / Android',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836671489.jpg'},
+  {nm:'Flutter Certificate',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739833967447.jpg'},
+  {nm:'Kotlin Certificate',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739833265595.jpg'},
+  {nm:'iOS App Development',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1736963166388.jpg'},
+  {nm:'Ionic App Development',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1719416827654.jpg'},
+  {nm:'React Native',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836534125.jpg'},
+  {nm:'JavaFX Certificate',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739834591577.jpg'},
+  {nm:'Firebase Certificate',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739832041295.jpg'},
+  {nm:'React Development',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836044174.jpg'},
+  {nm:'Bootstrap Framework',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739880857365.jpg'},
+  {nm:'HTML Advanced',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1719549107753.jpg'},
+  {nm:'HTML Certificate',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739881119420.jpg'},
+  {nm:'JavaScript Certificate',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739833486440.jpg'},
+  {nm:'Angular JS',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1719743636145.jpg'},
+  {nm:'Backbone JS',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739856370071.jpg'},
+  {nm:'Bulma CSS',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739835479177.jpg'},
+  {nm:'Foundation Framework',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739881026057.jpg'},
+  {nm:'Elm Programming',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1739880694089.jpg'},
+  {nm:'WordPress Development',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1670857442297.jpg'},
+  {nm:'Django Certificate',cat:'web',url:'https://storage.googleapis.com/programminghub/certificate%2F1719418019151.jpg'},
+  {nm:'Ruby Certificate',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1683570826803.jpg'},
+  {nm:'Lua Certificate',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739835829362.jpg'},
+  {nm:'Cyber Security',cat:'security',url:'https://storage.googleapis.com/programminghub/certificate%2F1719559807330.jpg'},
+  {nm:'Ethical Hacking',cat:'security',url:'https://storage.googleapis.com/programminghub/certificate%2F1739837560681.jpg'},
+  {nm:'Hacking Advanced',cat:'security',url:'https://storage.googleapis.com/programminghub/certificate%2F1739837372601.jpg'},
+  {nm:'Cryptography',cat:'security',url:'https://storage.googleapis.com/programminghub/certificate%2F1739897444326.jpg'},
+  {nm:'Artificial Intelligence',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739872038601.jpg'},
+  {nm:'Machine Learning',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739898444003.jpg'},
+  {nm:'AWS Cloud Computing',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739872219283.jpg'},
+  {nm:'Big Data Analytics',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739832702563.jpg'},
+  {nm:'ChatGPT Certificate',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739835091264.jpg'},
+  {nm:'DevOps Certificate',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1736964408824.jpg'},
+  {nm:'Edge Computing',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1719563380542.jpg'},
+  {nm:'Linux Certificate',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739832797741.jpg'},
+  {nm:'Git Certificate',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1719565433236.jpg'},
+  {nm:'Java Advanced',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836107562.jpg'},
+  {nm:'Python Certificate',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1670857989136.jpg'},
+  {nm:'Python Advanced',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1683192803473.jpg'},
+  {nm:'Python 3',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1671478597411.jpg'},
+  {nm:'Swift Certificate',cat:'mobile',url:'https://storage.googleapis.com/programminghub/certificate%2F1739832920562.jpg'},
+  {nm:'Software Engineering',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1670859667999.jpg'},
+  {nm:'Growth Hacking',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836337814.jpg'},
+  {nm:'Digital Marketing Adv',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1719635013116.jpg'},
+  {nm:'Google Ads Measurement',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739881242969.jpg'},
+  {nm:'Google Shopping Ads',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739856936031.jpg'},
+  {nm:'Google Display Ads',cat:'other',url:'https://storage.googleapis.com/programminghub/certificate%2F1739856891521.jpg'},
+  {nm:'IOT Certificate',cat:'cloud',url:'https://storage.googleapis.com/programminghub/certificate%2F1739836671489.jpg'}
+];
+
+const CAT_LABELS = {mobile:'Mobile Dev',web:'Web Dev',security:'Security',cloud:'Cloud & AI',other:'Other'};
+
+/* ================================================================
+   DOM READY
+================================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---- Preloader ---- */
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('fade-out');
+  }, 1800);
+
+  /* ---- Theme toggle ---- */
+  const html = document.documentElement;
+  const themeBtn = document.getElementById('theme-btn');
+  const themeIcon = document.getElementById('theme-icon');
+  const saved = localStorage.getItem('mka-theme') || 'light';
+  html.setAttribute('data-theme', saved);
+  themeIcon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+  themeBtn.addEventListener('click', () => {
+    const cur = html.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('mka-theme', next);
+    themeIcon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  });
+
+  /* ---- Hamburger ---- */
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('sb-overlay');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  hamburger.addEventListener('click', openSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  /* ---- Smooth nav + active state ---- */
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({behavior:'smooth'});
+          closeSidebar();
+        }
+      }
+    });
+  });
+
+  /* Active nav on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, {threshold: 0.35});
+  sections.forEach(s => observer.observe(s));
+
+  /* ---- Back to top ---- */
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 400);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  /* ---- Hero canvas particles ---- */
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let pts = [];
+  const N = 90;
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function rnd(a,b){return Math.random()*(b-a)+a}
+  const COLORS = ['rgba(155,142,196,', 'rgba(192,132,252,', 'rgba(129,140,248,'];
+
+  for(let i=0;i<N;i++) {
+    pts.push({
+      x:rnd(0,canvas.width), y:rnd(0,canvas.height),
+      vx:rnd(-0.4,0.4), vy:rnd(-0.4,0.4),
+      r:rnd(1.5,4), c:COLORS[Math.floor(rnd(0,3))], a:rnd(0.3,0.8)
+    });
+  }
+
+  let mx=0,my=0;
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+  });
+
+  function drawCanvas() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach((p,i) => {
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>canvas.width) p.vx*=-1;
+      if(p.y<0||p.y>canvas.height) p.vy*=-1;
+
+      /* draw point */
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.c + p.a + ')';
+      ctx.fill();
+
+      /* draw lines to mouse */
+      const dx=mx-p.x, dy=my-p.y, dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<140){
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);
+        ctx.strokeStyle = p.c + (0.18*(1-dist/140)) + ')';
+        ctx.lineWidth=0.8;ctx.stroke();
+      }
+
+      /* draw lines between close pts */
+      for(let j=i+1;j<pts.length;j++){
+        const q=pts[j];
+        const d=Math.sqrt((p.x-q.x)**2+(p.y-q.y)**2);
+        if(d<120){
+          ctx.beginPath();
+          ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle = p.c + (0.12*(1-d/120)) + ')';
+          ctx.lineWidth=0.6;ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(drawCanvas);
+  }
+  drawCanvas();
+
+  /* ---- Scroll fade animations ---- */
+  const fadeEls = document.querySelectorAll('.fi,.fl,.fr');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('vis');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+  fadeEls.forEach(el => fadeObs.observe(el));
+
+  /* ---- Skill bars ---- */
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.querySelectorAll('.sk-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.3});
+  document.querySelectorAll('.skills-grid').forEach(g => skillObs.observe(g));
+
+  /* ---- Animated counter ---- */
+  function animCount(el, target, dur=2000) {
+    let start = null;
+    const step = ts => {
+      if(!start) start = ts;
+      const prog = Math.min((ts-start)/dur,1);
+      el.textContent = Math.floor(prog * target);
+      if(prog<1) requestAnimationFrame(step);
+      else el.textContent = target + (target===5?'':'+');
+    };
+    requestAnimationFrame(step);
+  }
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          animCount(el, +el.dataset.target);
+        });
+        statObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.4});
+  const statsSection = document.getElementById('stats');
+  if(statsSection) statObs.observe(statsSection);
+
+  /* ---- Certificates ---- */
+  let currentCat = 'all';
+  let lbIndex = 0;
+  let lbItems = [];
+
+  function renderCerts(cat) {
+    const grid = document.getElementById('certs-grid');
+    const filtered = cat === 'all' ? CERTS : CERTS.filter(c => c.cat === cat);
+    lbItems = filtered;
+
+    grid.innerHTML = '';
+    filtered.forEach((c, i) => {
+      const thumb = c.url;
+      const label = CAT_LABELS[c.cat] || c.cat;
+      const el = document.createElement('div');
+      el.className = 'cert-c fi';
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', 'View certificate: ' + c.nm);
+      el.innerHTML = `
+        <div class="cert-img">
+          <img src="${thumb}" alt="${c.nm}" loading="lazy" onerror="this.src='https://placehold.co/400x300/9b8ec4/fff?text=Certificate'">
+          <div class="cert-overlay"><span class="cert-view-btn">VIEW ↗</span></div>
+        </div>
+        <div class="cert-inf">
+          <div class="cert-cat">${label}</div>
+          <div class="cert-nm">${c.nm}</div>
+        </div>`;
+      el.addEventListener('click', () => openLB(i));
+      el.addEventListener('keydown', e => { if(e.key==='Enter') openLB(i); });
+      grid.appendChild(el);
+
+      setTimeout(() => el.classList.add('vis'), i * 50);
+    });
+  }
+
+  document.getElementById('cert-filters').addEventListener('click', e => {
+    if(!e.target.matches('.f-btn')) return;
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+    e.target.classList.add('on');
+    currentCat = e.target.dataset.cat;
+    renderCerts(currentCat);
+  });
+
+  renderCerts('all');
+
+  /* ---- Lightbox ---- */
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+
+  function openLB(i) {
+    lbIndex = i;
+    lbImg.src = lbItems[i].url;
+    lbImg.alt = lbItems[i].nm;
+    lbCap.textContent = lbItems[i].nm.toUpperCase();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lb-close').addEventListener('click', closeLB);
+  lb.addEventListener('click', e => { if(e.target===lb) closeLB(); });
+  document.getElementById('lb-prev').addEventListener('click', e => {
+    e.stopPropagation();
+    lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
+    lbImg.src = lbItems[lbIndex].url;
+    lbImg.alt = lbItems[lbIndex].nm;
+    lbCap.textContent = lbItems[lbIndex].nm.toUpperCase();
+  });
+  document.getElementById('lb-next').addEventListener('click', e => {
+    e.stopPropagation();
+    lbIndex = (lbIndex + 1) % lbItems.length;
+    lbImg.src = lbItems[lbIndex].url;
+    lbImg.alt = lbItems[lbIndex].nm;
+    lbCap.textContent = lbItems[lbIndex].nm.toUpperCase();
+  });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLB();
+    if(e.key==='ArrowLeft') document.getElementById('lb-prev').click();
+    if(e.key==='ArrowRight') document.getElementById('lb-next').click();
+  });
+
+  /* ---- Testimonials slider ---- */
+  const track = document.getElementById('slider-track');
+  const dotsWrap = document.getElementById('sl-dots');
+  const slides = track.querySelectorAll('.slide');
+  let cur = 0;
+  let autoSlide;
+
+  slides.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'sl-dot' + (i===0?' on':'');
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.setAttribute('role','button');
+    d.setAttribute('tabindex','0');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    cur = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${cur*100}%)`;
+    dotsWrap.querySelectorAll('.sl-dot').forEach((d,i) => d.classList.toggle('on', i===cur));
+  }
+  function startAuto() { autoSlide = setInterval(() => goTo(cur+1), 5000); }
+  function stopAuto() { clearInterval(autoSlide); }
+
+  document.getElementById('sl-prev').addEventListener('click', () => { stopAuto(); goTo(cur-1); startAuto(); });
+  document.getElementById('sl-next').addEventListener('click', () => { stopAuto(); goTo(cur+1); startAuto(); });
+  startAuto();
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  /* ---- Contact form ---- */
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    const name = document.getElementById('cf-name');
+    const email = document.getElementById('cf-email');
+    const subject = document.getElementById('cf-subject');
+    const msg = document.getElementById('cf-msg');
+
+    [['cf-name','err-name',v=>v.trim().length>1],
+     ['cf-email','err-email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+     ['cf-subject','err-subject',v=>v.trim().length>2],
+     ['cf-msg','err-msg',v=>v.trim().length>9]
+    ].forEach(([id,errId,fn]) => {
+      const inp = document.getElementById(id);
+      const err = document.getElementById(errId);
+      const ok = fn(inp.value);
+      err.style.display = ok ? 'none' : 'block';
+      inp.style.borderColor = ok ? '' : '#f87171';
+      if(!ok) valid = false;
+    });
+
+    if(valid) {
+      document.getElementById('cf-success').style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { document.getElementById('cf-success').style.display = 'none'; }, 5000);
+    }
+  });
+
+  /* ---- Newsletter form ---- */
+  document.getElementById('nl-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('nl-name').value.trim();
+    const email = document.getElementById('nl-email').value.trim();
+    if(name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('nl-success').style.display = 'block';
+      e.target.reset();
+    }
+  });
+
+  /* ---- Parallax ---- */
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    document.querySelectorAll('.deco-orb').forEach((orb, i) => {
+      const speed = 0.04 + (i % 3) * 0.02;
+      orb.style.transform = `translateY(${y * speed}px)`;
+    });
+  });
+
+  /* ---- Repo card hover ---- */
+  document.querySelectorAll('.repo-c').forEach(c => {
+    c.addEventListener('mouseenter', () => {
+      c.style.borderColor = 'var(--primary)';
+      c.style.boxShadow = 'var(--glow)';
+      c.style.transform = 'translateY(-3px)';
+    });
+    c.addEventListener('mouseleave', () => {
+      c.style.borderColor = '';
+      c.style.boxShadow = '';
+      c.style.transform = '';
+    });
+  });
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
